@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="bowl" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#c73838"/>
+    </linearGradient>
+    <linearGradient id="broth" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#f4a261"/>
+    </linearGradient>
+  </defs>
+  <!-- steam -->
+  <path d="M44 18c0 8 8 8 8 16s-8 8-8 16" stroke="#bbb" stroke-width="4" stroke-linecap="round"/>
+  <path d="M64 12c0 8 8 8 8 16s-8 8-8 16" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+  <path d="M84 18c0 8 8 8 8 16s-8 8-8 16" stroke="#bbb" stroke-width="4" stroke-linecap="round"/>
+  <!-- bowl -->
+  <path d="M16 64c0 0 8 28 48 28s48-28 48-28H16z" fill="url(#broth)"/>
+  <path d="M12 64h104c-4 28-28 44-52 44S16 92 12 64z" fill="url(#bowl)"/>
+  <!-- noodles -->
+  <path d="M24 60c12 0 20-10 28-10s16 10 28 10 20-10 28-10" stroke="#f1e9a9" stroke-width="6" stroke-linecap="round"/>
+  <!-- toppings -->
+  <circle cx="44" cy="58" r="6" fill="#e76f51"/>
+  <circle cx="84" cy="58" r="6" fill="#2a9d8f"/>
+</svg>
+

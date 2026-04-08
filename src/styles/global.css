@@ -1,0 +1,105 @@
+/* 全局样式重置 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  /* --- 核心配色：高质感复古暖调 --- */
+  --bg: #F7F5F0;           /* 奶油米白背景 */
+  --panel-bg: #FFFFFF;     /* 纯白面板 */
+  --inner-bg: #EEEBE3;     /* 次级灰调背景 */
+  --result-screen-bg: #C0B8AB;
+  
+  --border: #2D2D2D;       /* 核心边框色 */
+  --shadow: #2D2D2D;       /* 核心阴影色 */
+  
+  /* --- 文字层级：确保极致可读性 --- */
+  --text-main: #1F1F1F;    /* 主文本 */
+  --text-sub: #525252;     /* 次文本 */
+  --text-weak: #757575;    /* 弱提示/页脚/时间 */
+  
+  /* --- 强调色：统一红色系 --- */
+  --accent-color: #E14D4D;
+  --accent-active: #C13D3D;
+  --text-on-accent: #FFFFFF;
+
+  --container-width: 560px;
+  --font-pixel: 'Zpix', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 极其克制的背景装饰 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(var(--border) 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.main-wrapper {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* A11y & 交互 */
+:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+  image-rendering: pixelated;
+}
+
+.px-panel {
+  background-color: var(--panel-bg);
+  border: 3px solid var(--border);
+  box-shadow: 6px 6px 0 0 var(--shadow);
+  position: relative;
+}
+
+.px-button {
+  cursor: pointer;
+  border: 3px solid var(--border);
+  font-family: var(--font-pixel);
+  transition: all 0.1s steps(2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.px-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 0 var(--shadow) !important;
+}
+
+.bg-accent { background-color: var(--accent-color); color: var(--text-on-accent); }
+.text-accent { color: var(--accent-color); }
