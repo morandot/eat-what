@@ -41,7 +41,7 @@ export function useSound() {
       osc.start();
       osc.stop(ctx.currentTime + duration);
     } catch (e) {
-      // Audio playback failed
+      console.warn('Audio playback failed', e)
     }
   };
 
@@ -62,7 +62,7 @@ export function useSound() {
     try {
       localStorage.setItem('eatwhat-sound', val.toString());
     } catch (e) {
-      // Silent fail
+      console.error('Failed to persist sound preference', e)
     }
   });
 

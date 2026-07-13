@@ -91,7 +91,7 @@ watch(history, (newHistory) => {
   try {
     localStorage.setItem('eatwhat-history', JSON.stringify(newHistory))
   } catch (e) {
-    // Silent fail
+    console.error('Failed to persist history', e)
   }
 }, { deep: true })
 

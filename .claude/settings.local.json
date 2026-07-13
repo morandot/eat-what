@@ -3,7 +3,24 @@
     "allow": [
       "Bash(git checkout:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(git config:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh api:*)",
+      "Bash(gh repo:*)",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(rm:*)",
+      "Bash(npm config:*)",
+      "Bash(git -C /Users/moran/project/blog log --oneline --all -- '.github/workflows/*')",
+      "Bash(git -C /Users/moran/project/blog show 6518e31:.github/workflows/)",
+      "Bash(node /tmp/fix-sizes.js)",
+      "Bash(node /tmp/fix-blogpost2.js)",
+      "Bash(git:*)",
+      "Bash(node /tmp/fix-alt.js)"
     ]
   }
 }

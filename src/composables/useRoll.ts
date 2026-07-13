@@ -7,6 +7,7 @@ export function useRoll(playTick: () => void, playResult: () => void) {
 
   const roll = (pool: readonly string[], callback?: (result: string) => void): void => {
     if (isRolling.value) return;
+    if (pool.length === 0) return;
     isRolling.value = true;
     currentResult.value = null;
 
