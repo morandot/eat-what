@@ -56,7 +56,6 @@ const formatDisplayTime = (timeStr: string): string => {
           <button 
             @click="emit('select', item.name)" 
             class="record-btn"
-            :aria-label="`回显记录: ${item.name}`"
           >
             <span class="item-name">{{ item.name }}</span>
             <span class="item-time">{{ formatDisplayTime(item.time) }}</span>
