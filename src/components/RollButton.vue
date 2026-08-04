@@ -36,7 +36,7 @@ const buttonText = computed((): string => {
       class="main-roll-btn px-button bg-accent" 
       :class="{ 'rolling': isRolling }"
       :disabled="isRolling"
-      :aria-label="isRolling ? '正在抽取' : '开始随机抽取食物'"
+      :aria-label="isRolling ? '抽取中' : '开始抽取'"
     >
       <span class="btn-content">{{ buttonText }}</span>
     </button>

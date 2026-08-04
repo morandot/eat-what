@@ -108,7 +108,7 @@ onMounted(() => {
       
       <main class="content-area">
         <section class="hero-section">
-          <h2 class="hero-subtitle">解决「这餐吃什么」的终极难题</h2>
+          <h1 class="hero-subtitle">解决「这餐吃什么」的终极难题</h1>
         </section>
 
         <TabBar class="mode-switcher" />
@@ -162,9 +162,9 @@ onMounted(() => {
 }
 
 .hero-subtitle {
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   color: var(--text-sub);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .mode-switcher {
@@ -180,13 +180,13 @@ onMounted(() => {
 .app-footer {
   padding: 40px 0 60px;
   text-align: center;
-  opacity: 0.4;
+  color: #5C5C5C;
   font-size: 0.75rem;
   border-top: 1px solid var(--inner-bg);
 }
 
 .footer-link {
-  color: inherit;
+  color: #5C5C5C;
   text-decoration: underline; /* 保持下划线 */
   transition: opacity 0.2s ease;
 }

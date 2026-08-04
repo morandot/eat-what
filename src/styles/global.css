@@ -6,6 +6,15 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* 像素字体（本地化，替代失效的 CDN 引用） */
+@font-face {
+  font-family: 'Zpix';
+  src: url('/fonts/zpix-subset.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* --- 核心配色：高质感复古暖调 --- */
   --bg: #F7F5F0;           /* 奶油米白背景 */
