@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
+import { injectItemListJsonLd } from './vite-plugins/inject-jsonld'
 
 // 极简配置，确保 Vue 正常运行
 export default defineConfig({
@@ -27,6 +28,7 @@ export default defineConfig({
         enabled: true,
       },
     }),
+    injectItemListJsonLd(),
   ],
   server: {
     port: 5174,

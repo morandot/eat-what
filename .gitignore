@@ -14,6 +14,11 @@ dev-dist
 .npm-cache-local/
 *.local
 
+# Environment variables (keep .env.example)
+.env
+.env.*
+!.env.example
+
 # Test artifacts
 test-results/
 playwright-report/

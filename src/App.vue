@@ -108,7 +108,7 @@ onMounted(() => {
       
       <main class="content-area">
         <section class="hero-section">
-          <h1 class="hero-subtitle">解决「这餐吃什么」的终极难题</h1>
+          <h1 class="hero-subtitle">今天吃什么？随机抽取帮你决定</h1>
         </section>
 
         <TabBar class="mode-switcher" />

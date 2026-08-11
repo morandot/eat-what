@@ -16,12 +16,12 @@ test.describe('EatWhat Smoke Test', () => {
   })
 
   test('page loads with correct title and brand', async ({ page }) => {
-    await expect(page).toHaveTitle('EatWhat - 像素风随机食物抽取器')
+    await expect(page).toHaveTitle('今天吃什么 - EatWhat 随机食物抽取器')
     await expect(page.locator('.brand-name')).toHaveText('EATWHAT')
   })
 
   test('hero subtitle is visible', async ({ page }) => {
-    await expect(page.locator('.hero-subtitle')).toContainText('解决「这餐吃什么」的终极难题')
+    await expect(page.locator('.hero-subtitle')).toContainText('今天吃什么？随机抽取帮你决定')
   })
 
   test('tab switcher shows 吃什么 / 喝什么', async ({ page }) => {
@@ -69,7 +69,7 @@ test.describe('EatWhat Smoke Test', () => {
     }, { timeout: 10000 })
 
     // History should have at least one entry
-    const count = await page.locator('.count').textContent()
+    const count = await page.getByLabel('抽取总次数').textContent()
     expect(parseInt(count || '0')).toBeGreaterThanOrEqual(1)
   })
 
