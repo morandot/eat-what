@@ -103,8 +103,11 @@ const tab = inject<TabContext>('tab')
   color: #FFFFFF;
 }
 
-.tab-btn:hover:not(.is-active) {
-  color: var(--text-main);
+/* hover 仅在精确指针设备（鼠标）生效，避免触屏点击后粘住 */
+@media (hover: hover) and (pointer: fine) {
+  .tab-btn:hover:not(.is-active) {
+    color: var(--text-main);
+  }
 }
 
 .tab-btn:focus-visible {

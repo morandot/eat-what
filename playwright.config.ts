@@ -8,7 +8,7 @@ export default defineConfig({
   workers: 1,
   reporter: 'list',
   use: {
-    baseURL: process.env.EATWHAT_URL || 'http://localhost:5173',
+    baseURL: process.env.EATWHAT_URL || 'http://localhost:5174',
     trace: 'on-first-retry',
   },
   projects: [

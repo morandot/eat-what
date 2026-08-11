@@ -65,10 +65,13 @@ const buttonText = computed((): string => {
   color: var(--text-on-accent);
 }
 
-.main-roll-btn:hover:not(:disabled) {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 0 0 var(--shadow);
-  background-color: var(--accent-active);
+/* hover 仅在精确指针设备（鼠标）生效，避免触屏点击后粘住 */
+@media (hover: hover) and (pointer: fine) {
+  .main-roll-btn:hover:not(:disabled) {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 0 0 var(--shadow);
+    background-color: var(--accent-active);
+  }
 }
 
 .main-roll-btn:active:not(:disabled),

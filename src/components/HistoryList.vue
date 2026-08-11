@@ -112,10 +112,17 @@ const formatDisplayTime = (timeStr: string): string => {
   box-shadow: 2px 2px 0 0 rgba(0,0,0,0.3);
 }
 
-.clear-btn:hover:not(:disabled) {
-  background: var(--inner-bg);
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 0 rgba(0,0,0,0.3);
+/* hover 仅在精确指针设备（鼠标）生效，避免触屏点击后粘住 */
+@media (hover: hover) and (pointer: fine) {
+  .clear-btn:hover:not(:disabled) {
+    background: var(--inner-bg);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 0 rgba(0,0,0,0.3);
+  }
+
+  .record-btn:hover {
+    background-color: var(--inner-bg);
+  }
 }
 
 .clear-btn:active:not(:disabled) {
@@ -148,6 +155,8 @@ const formatDisplayTime = (timeStr: string): string => {
   list-style: none;
   max-height: 280px;
   overflow-y: auto;
+  /* 列表滚动到底后不把滚动链传给页面，避免触发整页回弹/下拉刷新 */
+  overscroll-behavior: contain;
 }
 
 .record-item {
@@ -171,10 +180,6 @@ const formatDisplayTime = (timeStr: string): string => {
   transition: all 0.2s ease;
   color: var(--text-main);
   text-align: left;
-}
-
-.record-btn:hover {
-  background-color: var(--inner-bg);
 }
 
 .item-name {

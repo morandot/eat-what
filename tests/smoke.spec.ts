@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test'
 
-const BASE = process.env.EATWHAT_URL || 'http://localhost:5173'
+const BASE = process.env.EATWHAT_URL || 'http://localhost:5174'
 
 async function boot(page: Page) {
   await page.goto(BASE, { waitUntil: 'domcontentloaded' })

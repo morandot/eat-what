@@ -148,6 +148,7 @@ onMounted(() => {
 
 .app-root {
   min-height: 100vh;
+  min-height: 100dvh; /* 移动端：避免地址栏伸缩导致布局跳动 */
 }
 
 .content-area {
@@ -191,8 +192,11 @@ onMounted(() => {
   transition: opacity 0.2s ease;
 }
 
-.footer-link:hover {
-  opacity: 0.8;
+/* hover 仅在精确指针设备（鼠标）生效，避免触屏点击后粘住 */
+@media (hover: hover) and (pointer: fine) {
+  .footer-link:hover {
+    opacity: 0.8;
+  }
 }
 
 @media (max-width: 640px) {

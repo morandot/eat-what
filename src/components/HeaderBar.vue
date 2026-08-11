@@ -83,17 +83,19 @@ const toggleSound = (): void => {
   box-shadow: 2px 2px 0 0 var(--border);
 }
 
-/* Hover 状态反馈 */
-.icon-btn:hover {
-  background: var(--panel-bg);
-  transform: translate(-2px, -2px);
-  border-color: var(--border);
-  box-shadow: 2px 2px 0 0 var(--border);
-}
+/* Hover 状态反馈（仅精确指针设备生效，避免触屏点击后粘住） */
+@media (hover: hover) and (pointer: fine) {
+  .icon-btn:hover {
+    background: var(--panel-bg);
+    transform: translate(-2px, -2px);
+    border-color: var(--border);
+    box-shadow: 2px 2px 0 0 var(--border);
+  }
 
-.icon-btn.is-active:hover {
-  box-shadow: 4px 4px 0 0 var(--border);
-  transform: translate(-3px, -3px);
+  .icon-btn.is-active:hover {
+    box-shadow: 4px 4px 0 0 var(--border);
+    transform: translate(-3px, -3px);
+  }
 }
 
 /* Active 点击状态 */
