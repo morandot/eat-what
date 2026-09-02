@@ -43,11 +43,6 @@ const iconContent = computed(() => {
         </div>
       </div>
     </div>
-    
-    <div class="corner tl"></div>
-    <div class="corner tr"></div>
-    <div class="corner bl"></div>
-    <div class="corner br"></div>
   </div>
 </template>
 
@@ -67,7 +62,6 @@ const iconContent = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow: hidden;
 }
 
@@ -171,16 +165,4 @@ const iconContent = computed(() => {
   50% { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
-
-.corner {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background-color: var(--border);
-  z-index: 5;
-}
-.tl { top: -2px; left: -2px; }
-.tr { top: -2px; right: -2px; }
-.bl { bottom: -2px; left: -2px; }
-.br { bottom: -2px; right: -2px; }
 </style>

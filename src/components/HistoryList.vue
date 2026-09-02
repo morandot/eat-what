@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import IconPx from './icons/IconPx.vue'
 import type { HistoryItem, TabType } from '../types'
 
 interface Props {
@@ -33,16 +34,18 @@ const formatDisplayTime = (timeStr: string): string => {
   <section class="history-panel px-panel">
     <header class="panel-header">
       <div class="header-left">
+        <IconPx name="px-history" :size="16" />
         <h2 class="title font-pixel">抽取记录</h2>
         <span class="count font-pixel" aria-label="抽取总次数">{{ filteredHistory.length }}</span>
       </div>
-      
-      <button 
-        class="clear-btn font-pixel" 
+
+      <button
+        class="clear-btn font-pixel"
         @click="emit('clear')"
         :disabled="filteredHistory.length === 0"
       >
-        清理
+        <IconPx name="px-trash" :size="12" />
+        <span class="clear-label">清理</span>
       </button>
     </header>
 
@@ -86,7 +89,7 @@ const formatDisplayTime = (timeStr: string): string => {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .title {
@@ -108,8 +111,15 @@ const formatDisplayTime = (timeStr: string): string => {
   padding: 2px 8px;
   font-size: 0.75rem;
   cursor: pointer;
-  transition: all 0.1s steps(2);
-  box-shadow: 2px 2px 0 0 rgba(0,0,0,0.3);
+  transition: transform 0.1s steps(2), box-shadow 0.1s steps(2), background-color 0.1s steps(2);
+  box-shadow: 2px 2px 0 0 var(--shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.clear-label {
+  line-height: 1;
 }
 
 /* hover 仅在精确指针设备（鼠标）生效，避免触屏点击后粘住 */
@@ -117,7 +127,7 @@ const formatDisplayTime = (timeStr: string): string => {
   .clear-btn:hover:not(:disabled) {
     background: var(--inner-bg);
     transform: translate(-1px, -1px);
-    box-shadow: 3px 3px 0 0 rgba(0,0,0,0.3);
+    box-shadow: 3px 3px 0 0 var(--shadow);
   }
 
   .record-btn:hover {
@@ -127,7 +137,7 @@ const formatDisplayTime = (timeStr: string): string => {
 
 .clear-btn:active:not(:disabled) {
   transform: translate(1px, 1px);
-  box-shadow: 0 0 0 0 transparent;
+  box-shadow: 0 0 0 0 var(--shadow);
 }
 
 .clear-btn:disabled {

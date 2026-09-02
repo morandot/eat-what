@@ -29,3 +29,12 @@ export interface TabContext {
   activeTab: { value: TabType };
   setActiveTab: (tab: TabType) => void;
 }
+
+/**
+ * 像素功能图标名称（统一 16×16 viewBox，crispEdges）
+ */
+export type FunctionalIconName =
+  | 'px-speaker-on'
+  | 'px-speaker-off'
+  | 'px-trash'
+  | 'px-history';

@@ -58,6 +58,7 @@ const buttonText = computed((): string => {
   transform: translateY(-8px);
   position: relative;
   letter-spacing: 4px;
+  transition: transform 0.1s steps(2), box-shadow 0.1s steps(2), background-color 0.1s steps(2);
 }
 
 .bg-accent {
@@ -70,7 +71,6 @@ const buttonText = computed((): string => {
   .main-roll-btn:hover:not(:disabled) {
     transform: translateY(-10px);
     box-shadow: 0 10px 0 0 var(--shadow);
-    background-color: var(--accent-active);
   }
 }
 
@@ -78,19 +78,10 @@ const buttonText = computed((): string => {
 .main-roll-btn.rolling {
   transform: translateY(0);
   box-shadow: 0 0 0 0 var(--shadow);
+  background-color: var(--accent-active);
 }
 
 .rolling {
-  opacity: 0.95;
   cursor: wait;
-}
-
-.btn-content {
-  display: block;
-  transition: transform 0.1s ease;
-}
-
-.main-roll-btn:active .btn-content {
-  transform: scale(0.96);
 }
 </style>
