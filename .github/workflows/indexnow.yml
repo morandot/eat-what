@@ -1,0 +1,31 @@
+name: IndexNow
+
+# Notify Bing / Yandex / Seznam / Naver that URLs changed, right after they go live.
+#
+# Two entries:
+#   deployment_status - the correct hook if Vercel is connected to this GitHub repo
+#                       (fires once Vercel reports "success", i.e. after it is live)
+#   workflow_dispatch - always available, so you can ping by hand from the Actions tab
+#
+# Nothing here is secret: the IndexNow key is served publicly from the site root by design.
+
+on:
+  deployment_status:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  indexnow:
+    # Only production successes, and only for manual runs.
+    if: github.event_name == 'workflow_dispatch' || github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Submit URLs to IndexNow
+        run: npm run indexnow

@@ -12,7 +12,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "indexnow": "bash scripts/ping-indexnow.sh"
   },
   "dependencies": {
     "vue": "^3.5.39"
