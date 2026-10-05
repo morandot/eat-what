@@ -53,7 +53,7 @@ npm run build
 仓库已包含 Bing 收录所需的全部文件：
 
 - `public/robots.txt`：允许所有爬虫，并声明 sitemap 地址
-- `public/sitemap.xml`：站点 URL 列表
+- `public/sitemap.xml`：站点 URL 列表（`<lastmod>` 为手动维护，页面内容实际变更时请同步更新）
 - `public/<key>.txt`：IndexNow 密钥文件，从站点根目录对外提供
 - `index.html`：canonical、robots meta、Open Graph / Twitter Card，以及 WebApplication + ItemList 结构化数据
 
@@ -68,15 +68,15 @@ npm run indexnow -- <url>...  # 只提交指定 URL
 
 脚本会先校验密钥文件（需返回 HTTP 200 且内容与文件名一致），再提交到 `https://api.indexnow.org/indexnow`。每次内容变更部署后运行一次即可。
 
-这一步已由 `.github/workflows/indexnow.yml` 自动完成：它监听 Vercel 的 `deployment_status: success`，确保 URL 真正上线后才推送。也可以在 Actions 面板手动触发。
+这一步已由 `.github/workflows/indexnow.yml` 自动完成：它只监听 **Production** 环境的 `deployment_status: success`（Preview 部署不触发），确保 URL 真正上线后才推送。遇到 429 限流只记录告警、不会让任务变红。也可以在 Actions 面板手动触发。
 
-轮换密钥：新增 `public/<新密钥>.txt`（内容为密钥本身），删除旧文件，部署后重新执行 `npm run indexnow`。
+轮换密钥：在**同一次提交**中新增 `public/<新密钥>.txt`（内容为密钥本身）并删除旧文件，部署后重新执行 `npm run indexnow`。务必保持原子性——两个密钥文件并存时脚本的选择会有歧义。
 
 ### Bing 网站管理员工具一次性配置
 
 1. 在 <https://www.bing.com/webmasters> 添加站点，可直接复用 Google Search Console 验证或使用 DNS / meta 标签验证。
 2. 进入 **网站地图**，提交 `https://eatwhat.nopress.net/sitemap.xml`。
-3. 进入 **IndexNow** 并选择启用。之后提交记录会出现在「过去 10 几小时内提交的 URL」中，来源显示为 `Self`。
+3. 进入 **IndexNow** 并选择启用。之后提交记录会出现在「过去 10 小时内提交的 URL」中，来源显示为 `Self`。
 4. 如需单独收录某个 URL，可使用 **URL 检查** 发起索引请求。
 
 ## 开源协议

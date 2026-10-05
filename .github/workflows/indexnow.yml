@@ -3,11 +3,14 @@ name: IndexNow
 # Notify Bing / Yandex / Seznam / Naver that URLs changed, right after they go live.
 #
 # Two entries:
-#   deployment_status - the correct hook if Vercel is connected to this GitHub repo
-#                       (fires once Vercel reports "success", i.e. after it is live)
-#   workflow_dispatch - always available, so you can ping by hand from the Actions tab
+#   deployment_status - the correct hook if Vercel is connected to this GitHub repo.
+#                       It fires for EVERY environment Vercel tracks (Preview
+#                       included), so the job-level if: below keeps only Production
+#                       successes — preview/branch deploys must not churn IndexNow.
+#   workflow_dispatch - always available, so you can ping by hand from the Actions tab.
 #
-# Nothing here is secret: the IndexNow key is served publicly from the site root by design.
+# Nothing here is secret: the IndexNow key is served publicly from the site root
+# by design, and permissions: {} keeps GITHUB_TOKEN empty for this workflow.
 
 on:
   deployment_status:
@@ -17,15 +20,15 @@ permissions: {}
 
 jobs:
   indexnow:
-    # Only production successes, and only for manual runs.
-    if: github.event_name == 'workflow_dispatch' || github.event.deployment_status.state == 'success'
+    # Manual runs, or production deployments that went live. Vercel sets
+    # environment to "Production" / "Preview" on the deployment_status payload.
+    if: "github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && github.event.deployment_status.environment == 'Production')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
+          persist-credentials: false
 
+      # npm run only shells out to bash + curl; no Node toolchain setup is needed.
       - name: Submit URLs to IndexNow
         run: npm run indexnow

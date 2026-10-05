@@ -43,7 +43,7 @@ Food and drink lists, along with their pixel SVG data, are located in:
 
 The current implementation uses a direct "name → SVG pixel data" mapping — no emoji and no fuzzy category icons.
 
-Analytics (Optional)
+## Analytics (Optional)
 
 To enable analytics on your own deployment, set these environment variables (e.g. in Vercel):
 
@@ -57,7 +57,7 @@ See ⁠`.env.example⁠` for reference. Scripts only load when the variables are
 The site ships everything Bing needs to crawl and index it quickly:
 
 - `public/robots.txt` — allows all crawlers and points at the sitemap
-- `public/sitemap.xml` — the canonical URL list
+- `public/sitemap.xml` — the canonical URL list (its `<lastmod>` is maintained by hand — bump it whenever page content actually changes)
 - `public/<key>.txt` — the IndexNow key file, served from the site root
 - `index.html` — canonical URL, `robots` meta, Open Graph / Twitter cards, and WebApplication + ItemList JSON-LD
 
@@ -72,9 +72,9 @@ npm run indexnow -- <url>...  # submit specific URLs
 
 The script preflights the key file (it must return HTTP 200 and match its filename), then posts to `https://api.indexnow.org/indexnow`. Run it after each deploy that changes content.
 
-This runs automatically via `.github/workflows/indexnow.yml`, which fires on Vercel's `deployment_status: success` so URLs are only pushed once they are actually live. Trigger it manually from the Actions tab if needed.
+This runs automatically via `.github/workflows/indexnow.yml`, which fires on Vercel's `deployment_status: success` for the **Production** environment only (preview deploys are skipped), so URLs are pushed exactly once they are live. A 429 rate-limit is logged but does not fail the run. Trigger it manually from the Actions tab if needed.
 
-To rotate the key: add a new `public/<newkey>.txt` containing the key itself, delete the old one, deploy, then re-run `npm run indexnow`.
+To rotate the key: in a **single commit**, add the new `public/<newkey>.txt` (containing the key itself) and delete the old file, deploy, then re-run `npm run indexnow`. Keep it atomic — while both files exist the key lookup is ambiguous.
 
 ### One-time setup in Bing Webmaster Tools
 
